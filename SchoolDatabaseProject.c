@@ -2,12 +2,11 @@
 #include<stdlib.h>
 #include<conio.h>
 #include<string.h>
-#include<stdbool.h>
 #define MAX 1024
 #define NAME_SIZE 20 
 #define GRADE_SIZE 4
 // define file parameters
-FILE* data = fopen("school_project database.csv","a+");
+FILE* data ;
     char f_name[NAME_SIZE];
     char l_name[NAME_SIZE];
     int  score ;
@@ -207,6 +206,7 @@ void del()
         }
        
     } 
+    // if statment to clear student found or not founded
     if(counter==0)
     printf("Error: student not found");
     else
