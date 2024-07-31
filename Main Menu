@@ -1,0 +1,6 @@
+Press 'a' on keyboard for adding new name.
+Press 'p' to print all information in database file.
+Press 's' to search for a name.
+Press 'e' to edit the enteries of the student.
+Press 't' to print top 10 students.
+Press 'd' to delete a student.

@@ -16,7 +16,8 @@ FILE* data = fopen("school_project database.csv","a+");
 void menu() // Function of Print the meue
 {
     char c;
-    FILE* menu = fopen("Main Menu","r");
+    FILE* menu = fopen("Main Menu","a+");
+    fprintf(menu,"Press 'a' on keyboard for adding new name.\nPress 'p' to print all information in database file.\nPress 's' to search for a name. \nPress 'e' to edit the enteries of the student.\nPress 't' to print top 10 students.\nPress 'd' to delete a student.\n");
     rewind(menu);
     while(c != EOF)
     { 
@@ -176,6 +177,7 @@ void edit()
     fprintf(data,"%s \n",math_grade); //how to end of line and do not mix with next line
   
 }
+<<<<<<< HEAD
 void delete() 
 {
 
@@ -184,3 +186,5 @@ void delete()
 
 
 }
+=======
+>>>>>>> a6cc77cae85804ea3ed2542b32f1f932d3786b3c
