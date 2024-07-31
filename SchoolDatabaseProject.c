@@ -138,37 +138,38 @@ void edit()
     scanf("%s",f_name);
     printf("Last Name                \t");
     scanf("%s",l_name);
-    strcat(f_name , l_name ) ;
-    data = fopen("school_project database.csv","r+");
+    strcat(f_name , l_name ) ; // To copy without deleted info of f_name
+    data = fopen("school_project database.csv","r+"); // open file
+    //To read data and compare
     while(  (fgets(str1,1024,data)) != NULL)
     {      
         counter1=ftell(data); //-line
-        if ( strncmp(f_name , str1 ,strlen(f_name)) == 0 )
+        if ( strncmp(f_name , str1 ,strlen(f_name)) == 0 ) //To compare data
         {
             printf ("%s",str1);                  
            counter2=counter1-(strlen(str1)+1); //to point where start edit
         }
     
     }
-    fseek(data , counter2 , SEEK_SET);
+    fseek(data , counter2 , SEEK_SET); // to move the pointer in location 
+    //To input new data
     printf("New First Name                \t");
     scanf("%s",f_name);
-    //fprintf(data,"%s,",f_name);
+    fprintf(data,"%s,",f_name);
     printf("New Last Name                 \t");
     scanf("%s",l_name);
-    //fprintf(data,"%s,",l_name);
+    fprintf(data,"%s,",l_name);
     printf("New Total score of 100        \t");
     scanf("%d",&score);
-    //fprintf(data,"%d,",score);
+    fprintf(data,"%d,",score);
     printf("New Arabic grade (pass/fail)  \t");
     scanf("%s",arabic_grade);
-    //fprintf(data,"%s,",arabic_grade);
+    fprintf(data,"%s,",arabic_grade);
     printf("New English grade (pass/fail) \t");
     scanf("%s",english_grade);
-    //fprintf(data,"%s,",english_grade);
+    fprintf(data,"%s,",english_grade);
     printf("New Math grade (pass/fail)    \t");
     scanf("%s",math_grade);
-    //fprintf(data,"%s \n",math_grade);
-    fprintf(data,"%s,%s,%d,%s,%s,%s\n",f_name,l_name,&score,arabic_grade,english_grade,math_grade);
+    fprintf(data,"%s \n",math_grade); //how to end of line and do not mix with next line
   
 }
