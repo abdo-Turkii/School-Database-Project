@@ -16,7 +16,8 @@ FILE* data = fopen("school_project database.csv","a+");
 void menu() // Function of Print the meue
 {
     char c;
-    FILE* menu = fopen("Main Menu","r");
+    FILE* menu = fopen("Main Menu","a+");
+    fprintf(menu,"Press 'a' on keyboard for adding new name.\nPress 'p' to print all information in database file.\nPress 's' to search for a name. \nPress 'e' to edit the enteries of the student.\nPress 't' to print top 10 students.\nPress 'd' to delete a student.\n");
     rewind(menu);
     while(c != EOF)
     { 
