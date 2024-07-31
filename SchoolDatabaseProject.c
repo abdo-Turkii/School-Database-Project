@@ -28,7 +28,7 @@ void add();    // Function of addition
 void print();  // Function of addition
 void search(); //Function to search in data storged
 void edit();   // Function of edit
-
+void delete();   // Function of edit
 
 int main(int argc ,char *argv[])
 {
@@ -59,7 +59,7 @@ int main(int argc ,char *argv[])
             printf("CHOIcE t\n");
             break;
             case ('d'): // To delete a student
-            printf("CHOIce d\n");
+            delete();
            break;
         }
         // To loop the program by (yes/no)
@@ -74,55 +74,58 @@ int main(int argc ,char *argv[])
 void add() // Function of addition
 {
     
-    data = fopen("school_project database.csv","a+");
-    printf("First Name                \t");
+    data = fopen("school_project database.csv","a+"); // open file
+    printf("First Name                \t"); 
     scanf("%s",f_name);
-    fprintf(data,"%s,",f_name);
+    fprintf(data,"%s,",f_name);         // To add First Name in file 
     printf("Last Name                 \t");
     scanf("%s",l_name);
-    fprintf(data,"%s,",l_name);
+    fprintf(data,"%s,",l_name);         // To add Last Name in file 
     printf("Total score of 100        \t");
     scanf("%d",&score);
-    fprintf(data,"%d,",score);
+    fprintf(data,"%d,",score);          // To add total score in file 
     printf("Arabic grade (pass/fail)  \t");
-    scanf("%s",arabic_grade);
-    fprintf(data,"%s,",arabic_grade);
+    scanf("%s",arabic_grade); 
+    fprintf(data,"%s,",arabic_grade);   // To add Arabic grade in file
     printf("English grade (pass/fail) \t");
-    scanf("%s",english_grade);
-    fprintf(data,"%s,",english_grade);
+    scanf("%s",english_grade); 
+    fprintf(data,"%s,",english_grade);  // To add English grade in file
     printf("Math grade (pass/fail)    \t");
     scanf("%s",math_grade); 
-    fprintf(data,"%s \n",math_grade);
+    fprintf(data,"%s \n",math_grade);   // To add Math grade in file 
     
-    fclose(data);
+    fclose(data); //To close The File
 
 }
 
 void print()
 {
-    data = fopen("school_project database.csv","a+");
-    char c;
+    data = fopen("school_project database.csv","a+"); // open file
+    char c; // to store character by character 
     printf("First name,Lastname,Score,Arabic Grade,Enlish Grade,Math Grade\n");
-    c =fscanf(data,"%s,%s,%d,%s,%s,%s\n",f_name,l_name,&score,arabic_grade,english_grade,math_grade);
-    rewind(data);
+    c =fscanf(data,"%s,%s,%d,%s,%s,%s\n",f_name,l_name,&score,arabic_grade,english_grade,math_grade); //to read data from file
+    rewind(data); // to move the file pointer to the beginning of the file stream
+    //loop to print all character in file 
     while(c != EOF)
     { 
         printf ("%c",c); 
-        c = fgetc(data); 
+        c = fgetc(data); //to get all character from file
     }
 }
 void search ()
 {
-    int i;
-    char str[1024];
+    
+    char str[1024];        // to store line by line 
     printf("First Name                \t");
     scanf("%s",f_name);
-    data = fopen("school_project database.csv","r");
-    {printf ("Loading... \n");
+    data = fopen("school_project database.csv","r"); // open file
+    {
+        printf ("Loading... \n");
+        //loop to print all line in file 
         while(  (fgets(str,1024,data)) != NULL)
     { 
         if ( strncmp(f_name , str ,strlen(f_name)) == 0 )
-        printf ("%s",str); 
+        printf ("%s",str);  //to print line where the pointer is existing
 
     }
     }
@@ -172,4 +175,12 @@ void edit()
     scanf("%s",math_grade);
     fprintf(data,"%s \n",math_grade); //how to end of line and do not mix with next line
   
+}
+void delete() 
+{
+
+
+
+
+
 }
