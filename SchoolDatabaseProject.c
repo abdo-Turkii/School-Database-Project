@@ -2,7 +2,8 @@
 #include<stdlib.h>
 #include<conio.h>
 #include<string.h>
-//#define NUM_USERS 300
+#include<stdbool.h>
+#define MAX 1024
 #define NAME_SIZE 20 
 #define GRADE_SIZE 4
 // define file parameters
@@ -17,19 +18,20 @@ void menu() // Function of Print the meue
 {
     char c;
     FILE* menu = fopen("Main Menu","a+");
-    fprintf(menu,"Press 'a' on keyboard for adding new name.\nPress 'p' to print all information in database file.\nPress 's' to search for a name. \nPress 'e' to edit the enteries of the student.\nPress 't' to print top 10 students.\nPress 'd' to delete a student.\n");
+    //fprintf(menu,"Press 'a' on keyboard for adding new name.\nPress 'p' to print all information in database file.\nPress 's' to search for a name. \nPress 'e' to edit the enteries of the student.\nPress 't' to print top 10 students.\nPress 'd' to delete a student.\n");
     rewind(menu);
     while(c != EOF)
     { 
         printf ("%c",c); 
         c = fgetc(menu); 
     }
+    printf("\n");
 }    
 void add();    // Function of addition
 void print();  // Function of addition
 void search(); //Function to search in data storged
 void edit();   // Function of edit
-void delete();   // Function of edit
+void del();   // Function of delete student
 
 int main(int argc ,char *argv[])
 {
@@ -60,7 +62,7 @@ int main(int argc ,char *argv[])
             printf("CHOIcE t\n");
             break;
             case ('d'): // To delete a student
-            delete();
+            del();
            break;
         }
         // To loop the program by (yes/no)
@@ -116,7 +118,7 @@ void print()
 void search ()
 {
     
-    char str[1024];        // to store line by line 
+    char str[MAX];        // to store line by line 
     printf("First Name                \t");
     scanf("%s",f_name);
     data = fopen("school_project database.csv","r"); // open file
@@ -137,7 +139,7 @@ void edit()
 { 
     int counter1;      //location of pointer
     int counter2;     //to point where start edit
-    char str1[1024]; // to read and compare data
+    char str1[MAX]; // to read and compare data
     printf("First Name               \t");
     scanf("%s",f_name);
     printf("Last Name                \t");
@@ -177,14 +179,43 @@ void edit()
     fprintf(data,"%s \n",math_grade); //how to end of line and do not mix with next line
   
 }
-<<<<<<< HEAD
-void delete() 
+void del() 
 {
-
-
-
-
-
+    int counter=0; // to clear student found or not founded
+    FILE* temp=fopen("temporary.csv","w"); //Temporary file 
+    data = fopen("school_project database.csv","r"); // open file
+    char str[MAX];
+    printf("Delete data of Student\n");
+    printf("First Name                \t");
+    scanf("%s",f_name);
+    printf("Last Name                 \t");
+    scanf("%s",l_name);
+    strcat(f_name , l_name ) ; // To copy without deleted info of f_name
+    //loop to copy data file in temporary file without Student Deleted
+    while(  (fgets(str,1024,data)) != NULL)
+    {      
+        
+        if ( strncmp(f_name , str ,strlen(f_name)) == 0 ) //To compare data
+        {
+            strcpy(f_name , str );
+            printf("Found: %s",f_name);
+            counter++;
+        }
+        else if(strncmp(f_name , str ,strlen(f_name)) != 0)
+        {
+            fputs(str, temp);     
+        }
+       
+    } 
+    if(counter==0)
+    printf("Error: student not found");
+    else
+    printf("Student is deleted");
+    // close our files
+    fclose(data);
+    fclose(temp);
+  
+    // delete the original file, give the temporary file the name of the original file
+    remove("school_project database.csv");
+    rename( "temporary.csv" , "school_project database.csv" );
 }
-=======
->>>>>>> a6cc77cae85804ea3ed2542b32f1f932d3786b3c
