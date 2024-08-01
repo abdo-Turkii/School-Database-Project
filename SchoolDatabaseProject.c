@@ -14,7 +14,7 @@
     char arabic_grade[GRADE_SIZE];
     char english_grade[GRADE_SIZE];
     char math_grade[GRADE_SIZE];
-/*void menu() // Function of Print the meue
+/*void menu()        // Function of Print the meue
 {
     char c;
     FILE* menu = fopen("Main Menu","a+");
