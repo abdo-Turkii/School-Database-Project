@@ -1,19 +1,14 @@
-/*#include<stdio.h>
-void x(int *g)
-{
-    *g=;
-    printf("%d\t",*g);
-}
-int main()
-{
- int j=3;
-x(&j);
-}*/
 #include <stdio.h>
+#include <string.h>
 
-int main (int argc, char * argv[]){
-   printf("Hello %s\n", argv[0]);
-   for (int i=0;i<34;i+=4)
-   printf("%d\t",i);
+#include <stdlib.h>
+#define max 1024
+
+int main (int argc, char *argv[])
+{
+
+   char* file_name;
+   file_name = argv[1];
+   FILE * data=fopen(file_name ,"a+");
    return 0;
 }
