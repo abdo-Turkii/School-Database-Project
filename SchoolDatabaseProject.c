@@ -14,7 +14,7 @@
     char arabic_grade[GRADE_SIZE];
     char english_grade[GRADE_SIZE];
     char math_grade[GRADE_SIZE];
-void menu() // Function of Print the meue
+/*void menu() // Function of Print the meue
 {
     char c;
     FILE* menu = fopen("Main Menu","a+");
@@ -26,7 +26,7 @@ void menu() // Function of Print the meue
         c = fgetc(menu); 
     }
     printf("\n");
-}    
+}    */
 void add();       // Function of addition
 void print();    // Function of addition
 void search();  // Function to search in data storged
@@ -45,8 +45,8 @@ int main(int argc ,char *argv[])
     char choice; // To Select the from menu
     do 
     {
-        //printf("Press 'a' on keyboard for adding new name.\nPress 'p' to print all information in database file.\nPress 's' to search for a name. \nPress 'e' to edit the enteries of the student.\nPress 't' to print top 10 students.\nPress 'd' to delete a student.\n");
-        menu();
+        printf("Press 'a' on keyboard for adding new name.\nPress 'p' to print all information in database file.\nPress 's' to search for a name. \nPress 'e' to edit the enteries of the student.\nPress 't' to print top 10 students.\nPress 'd' to delete a student.\n");
+        //menu();
         scanf(" %c",&choice); // Input the selection form menu 
         switch (choice) // Status of menu
         {
