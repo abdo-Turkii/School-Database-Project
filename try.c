@@ -23,25 +23,39 @@
 // original file and rename the temp file to the original file name
 
 // Comparison function
-int compare(const void* a, const void* b) {
-   return (*(int*)a - *(int*)b);
-}
-
-int main() {
-   char * arr[] = {"ahmed 6" ,"sara 5","faten 4" ,"aseel 8","zezo 10"} ;
-   int n = sizeof(arr) / sizeof(arr[0]);
-  int i;
-   for (i = 0; i < n; ++i) {
-      printf("%s ", arr[i]);
+/* FUNCTION TO SORT THE RECORD */
+void sort()
+{
+ int a[20], count = 0, i, j, t, c;
+ FILE *fpo;
+ fpo = fopen("Record", "r");
+ while (fread(&stud, sizeof(stud), 1, fpo))
+ {
+  a[count] = stud.rollno;
+  count++;
+ }
+ c = count;
+ for (i = 0; i<count - 1; i++)
+ {
+  for (j = i + 1; j<count; j++)
+  {
+   if (a[i]>a[j])
+   {
+    t = a[i];
+    a[i] = a[j];
+    a[j] = t;
    }
-   qsort(arr, n, sizeof(int), compare);
+  }
+ }
+ printf("Roll No.\tName\t\tMark\n\n");
+ count = c;
+ for (i = 0; i<count; i++)
+ {
+  rewind(fpo);
+  while (fread(&stud, sizeof(stud), 1, fpo))
+  {
+   if (a[i] == stud.rollno)
+    printf("\n %d\t\t %s \t\t %2f",stud.rollno, stud.name, stud.mark);
+  }
 
-   printf("\nFollowing is the sorted array: ");
-   
-   
-   for (i = 0; i < n; ++i) {
-      printf("%d ", arr[i]);
-   }
-   printf("\n");
-   return 0;
-}
+ }

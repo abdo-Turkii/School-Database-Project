@@ -18,7 +18,7 @@
     char math_grade[GRADE_SIZE];
   }b;
   
-/*void menu()        // Function of Print the meue
+/*void menu()      // Function of Print the meue
 {
     char c;
     FILE* menu = fopen("Main Menu","a+");
@@ -35,7 +35,8 @@ void add();       // Function of addition
 void print();    // Function of addition
 void search();  // Function to search in data storged
 void edit();   // Function of edit
-void del();   // Function of delete student
+void top();   // Function of print top 10 of score
+void del();  // Function of delete student
 
 int main(int argc ,char *argv[])
 {
@@ -67,7 +68,7 @@ int main(int argc ,char *argv[])
             edit();
             break;
             case ('t'): // To print top 10 students
-            printf("CHOIcE t\n");
+            top();
             break;
             case ('d'): // To delete a student
             del();
@@ -158,7 +159,7 @@ void edit()
     strcat(b.f_name ,b.l_name ) ; // To copy without deleted info of b.f_name
     b.data = fopen(b.file_name,"r+"); // open file
     //To read data and compare
-    while(  (fgets(str1,1024,b.data)) != NULL)
+    while(  (fgets(str1,MAX,b.data)) != NULL)
     {      
         counter1=ftell(b.data); //-line
         if ( strncmp(b.f_name , str1 ,strlen(b.f_name)) == 0 ) //To compare data
@@ -190,6 +191,85 @@ void edit()
     fprintf(b.data,"%s \n",b.math_grade); //how to end of line and do not mix with next line
     fclose(b.data); //To close The File
 }
+// Comparison function
+int compare(const void *arg1, const void *arg2)
+{
+   return strcasecmp(*(const char **)arg1, *(const char **)arg2);
+}
+void top ()
+{
+    int c1; 
+    int counter1;      //location of pointer
+    int counter2;     //to point where start edit
+    char str1[MAX];
+    char str2[MAX];
+    char temp[MAX];   // to read and compare data
+    b.data = fopen(b.file_name,"r+"); // open file
+    //To read data and compare
+    while(  (fgets(str1,MAX,b.data)) != NULL)
+    {      
+        counter1=ftell(b.data); //-line
+        counter2=counter1-19;
+        fseek(b.data , counter2 , SEEK_END);
+        //fscanf(str1,"%d",c1);
+        c1=atoi(str1);
+        printf("score %d\n",c1);
+        if(strcmp(str1,str2) > 0) 
+        {
+            strcpy(temp , str1);
+            strcpy(str1 , str2);
+            strcpy(str2 , temp);
+        } 
+        
+       
+       //counter2=counter1+22;
+    
+    }
+    printf("score %s\n",str1);
+    
+    fclose(b.data); //To close The File
+}
+/*void top()
+{
+    //char str[MAX];
+   info *s , s1;
+   int i ,j ;
+   // Size of the array
+   b.data=fopen(b.file_name, "r");
+   fseek(b.data,0,SEEK_END);
+   int n =ftell(b.data)/ sizeof(info);
+   s = (info*)calloc(n,sizeof(info));
+   rewind(b.data);
+   for(i=0;i<n;i++)
+        fread(&s[i],sizeof(info),3,b.data);
+    for(i=0;i<n;i++)
+    {
+        for(j=i+1;j<n;j++)
+        {
+            if(s[i].score < s[j].score)
+            {
+                s1=s[i];
+                s[i]=s[j];
+                s[j]=s1;
+            }
+        }
+    }  
+    
+    for(i=0;i<2;i++)
+    {
+        printf(" %d\n",s[i].score);
+    }
+
+    //Use qsort to sort
+   //qsort(b.data, size, sizeof(char *), compare);
+   //printf("Following is the sorted File: ");
+//////while(  (fgets(str,MAX,b.data)) != NULL)
+    //{      
+    //    printf("%s",str);
+   // }
+    
+fclose(b.data);
+}*/
 void del() 
 {
     int counter=0; // to clear student found or not founded
