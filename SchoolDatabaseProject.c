@@ -21,7 +21,6 @@ char* file_name;
   
   struct info
   {
-  
     // creat a pointer to store file name
     char f_name[NAME_SIZE];
     char l_name[NAME_SIZE];
@@ -117,7 +116,7 @@ void add() // Function of addition
     fprintf(data,"%s,",b.english_grade);  // To add English grade in file
     printf("Math grade (pass/fail)    \t");
     scanf("%s",b.math_grade); 
-    fprintf(data,"%s,\n",b.math_grade);   // To add Math grade in file 
+    fprintf(data,"%s\n",b.math_grade);   // To add Math grade in file 
     
     fclose(data); //To close The File
 
@@ -305,12 +304,12 @@ void top()
     int read = 0 ;     // number of data readed from file in one line 
     int records = 0 ; // number of line readed
     int i,j;         // counters 
-    data=fopen(file_name, "r"); // open file to read
+    data = fopen( file_name , "r"); // open file to read
     //loop to read and store data in student structure
     do
     {
         //readed data line by line
-        read = fscanf(data,"%19[^,],%19[^,],%d,%4[^,],%4[^,],%4[^,]",stu[records].name1,stu[records].name2,&stu[records].t_score,stu[records].arabic_g,stu[records].english_g,stu[records].math_g);
+        read = fscanf(data,"%19[^,],%19[^,],%d,%4[^,],%4[^,],%s",stu[records].name1,stu[records].name2,&stu[records].t_score,stu[records].arabic_g,stu[records].english_g,stu[records].math_g);
         if (read == 6) records++; // readed six elements of line 
         if (read !=6 && !feof) // if data in file need to edit
         {
