@@ -54,8 +54,8 @@ int main(int argc ,char *argv[])
 {
     //printf("have %d of argmument\n",argc);
     //printf("Program name %s\n", argv[0]);
-    file_name = "data2.csv";
-    //file_name = argv[1]; // give file name by user 
+    //file_name = "data2.csv";
+    file_name = argv[1]; // give file name by user 
     //FILE * data=fopen(file_name ,"a+"); //open or creat file name input by user
     printf("                    Welcom\n"); // Introduction
     char continu; // To loop the program by (yes/no)
