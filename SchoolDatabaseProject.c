@@ -64,15 +64,16 @@ int main(int argc ,char *argv[])
         file_name = argv[1];
     #endif // give file name by user 
     //FILE * data=fopen(file_name ,"a+"); //open or creat file name input by user
-    printf("================================================================================================\n"); 
     printf("                    Welcome\n"); // Introduction
     char continu; // To loop the program by (yes/no)
     char choice; // To Select the from menu
-    do 
+    int i=0;
+    while ( i == 0 )
     {
-        printf("Press 'a' on keyboard for adding new name.\nPress 'p' to print all information in database file.\nPress 's' to search for a name. \nPress 'e' to edit the enteries of the student.\nPress 't' to print top 10 students.\nPress 'd' to delete a student.\nPress 'x' to exit program.\nPlease enter your option then press enter:\n");
+        printf("================================================================================================\n"); 
+        printf("Press 'a' on keyboard for adding new name.\nPress 'p' to print all information in database file.\nPress 's' to search for a name.\nPress 'e' to edit the enteries of the student.\nPress 't' to print top 10 students.\nPress 'd' to delete a student.\nPress 'x' to exit program.\nPlease enter your option then press enter:\n");
         //menu();
-        scanf(" %c",&choice); // Input the selection form menu 
+        scanf(" %c",&choice);       // Input the selection form menu 
         switch (choice) // Status of menu
         {
             case ('a'): // To add new name 
@@ -95,15 +96,14 @@ int main(int argc ,char *argv[])
                 break;
             case ('x'): // To delete a student
                 printf("The end \n");
+                i++;
                 break;
         }
         // To loop the program by (yes/no)
-        printf("\nDo you want to continue(y/n)\n");
-        scanf(" %c",&continu);
-    } while (continu=='y'); 
-    
-    fclose(data);
-
+        //printf("\nDo you want to continue(y/n)\n");
+        //scanf(" %c",&continu);
+        //fclose(data);
+    }
     return 0;
 }
 void add( FILE* data , char* file_name) // Function of addition
@@ -357,7 +357,7 @@ void top(FILE* data , char* file_name)
     printf("Top 10 students:");
     for (  i = 0; i < 10;i++)//loop to print Top 10 students
    {
-      printf("%s %s %d \t===========>%d",stu[i].name1,stu[i].name2,stu[i].t_score,j=i+1);
+      printf("%s %s %d (%d)\n",stu[i].name1,stu[i].name2,stu[i].t_score,j=i+1);
    }
 }
 void del(FILE* data , char* file_name) 
