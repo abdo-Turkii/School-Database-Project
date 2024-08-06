@@ -70,7 +70,7 @@ int main(int argc ,char *argv[])
     char choice; // To Select the from menu
     do 
     {
-        printf("Press 'a' on keyboard for adding new name.\nPress 'p' to print all information in database file.\nPress 's' to search for a name. \nPress 'e' to edit the enteries of the student.\nPress 't' to print top 10 students.\nPress 'd' to delete a student.\n");
+        printf("Press 'a' on keyboard for adding new name.\nPress 'p' to print all information in database file.\nPress 's' to search for a name. \nPress 'e' to edit the enteries of the student.\nPress 't' to print top 10 students.\nPress 'd' to delete a student.\nPress 'x' to exit program.\n");
         //menu();
         scanf(" %c",&choice); // Input the selection form menu 
         switch (choice) // Status of menu
@@ -92,6 +92,9 @@ int main(int argc ,char *argv[])
                 break;
             case ('d'): // To delete a student
                 del(data , file_name);
+                break;
+            case ('x'): // To delete a student
+                printf("The end \n");
                 break;
         }
         // To loop the program by (yes/no)
