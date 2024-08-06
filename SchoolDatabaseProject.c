@@ -16,7 +16,7 @@
     int t_score;
     char arabic_g[GRADE_SIZE];
     char english_g[GRADE_SIZE];
-    char math_g[GRADE_SIZE];
+    char math_g[NAME_SIZE];
   }stu;
   
   struct info
@@ -356,7 +356,7 @@ void top(FILE* data , char* file_name)
     do
     {
         //get data line by line
-        read = fscanf(data,"%19[^,],%19[^,],%d,%4[^,],%4[^,],%4[^,]",stu[records].name1,stu[records].name2,&stu[records].t_score,stu[records].arabic_g,stu[records].english_g,stu[records].math_g);
+        read = fscanf(data,"%19[^,],%19[^,],%d,%4[^,],%4[^,],%5[^,]",stu[records].name1,stu[records].name2,&stu[records].t_score,stu[records].arabic_g,stu[records].english_g,stu[records].math_g);
         if (read == 6) // get six elements of line
             records++;  
         if (read !=6 && !feof) // if data in file need to edit
@@ -390,10 +390,10 @@ void top(FILE* data , char* file_name)
     }
     //Use qsort to sort
     //qsort(stu , records , sizeof(stu[0]), compare);
-    printf("Top 10 students:");
+    printf("Top 10 students:\n");
     for (  i = 0; i < 10;i++)//loop to print Top 10 students
    {
-      printf("%s %s %d (%d)\n",stu[i].name1,stu[i].name2,stu[i].t_score,j=i+1);
+      printf("(%d)-%s %s %d \n",j=i+1,stu[i].name1,stu[i].name2,stu[i].t_score);
    }
 }
 void del(FILE* data , char* file_name) 
