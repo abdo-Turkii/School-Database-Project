@@ -5,7 +5,7 @@
 #define MAX 1024
 #define NAME_SIZE 20 
 #define GRADE_SIZE 4
-#define LOG_DEBUEGG 1
+#define LOG_DEBUEGG 0
 // define file parameters
 
 // struc to store content of file to sort 
@@ -135,16 +135,38 @@ void add( FILE* data , char* file_name) // Function of addition
 void print(FILE* data , char* file_name)
 {
     struct info student;
-    data = fopen(file_name,"a+"); // open file
-    char c; // to store character by character 
-    //printf("First name,Lastname,score,Arabic Grade,Enlish Grade,Math Grade\n");
-    c =fscanf(data,"%s %s %d %s %s %s\n",student.f_name,student.l_name,&student.score,student.arabic_grade,student.english_grade,student.math_grade); //to read data from file
-    rewind(data); // to move the file pointer to the beginning of the file stream
+    data = fopen(file_name,"r"); // open file
+    char *c;          // to store character by character
+    char str[MAX];  // to store line by line 
+    //c =fscanf(data,"%s %s %d %s %s %s\n",student.f_name,student.l_name,&student.score,student.arabic_grade,student.english_grade,student.math_grade); //to read data from file
+    //str[MAX]=fscanf(data,"%19[^,]\t%19[^,]\t%d\t%4[^,]\t%19[^,]\t%s\n",student.f_name,student.l_name,&student.score,student.arabic_grade,student.english_grade,student.math_grade); //to read data from file
+    // to move the file pointer to the beginning of the file stream
     //loop to print all character in file 
-    while(c != EOF)
+    /*while(c != EOF)
     { 
         printf ("%c",c); 
         c = fgetc(data); //to get all character from file
+    }*/
+    printf("First name\tLast name\tscore Arabic English Math\n");
+    rewind(data);
+    //fgets(str,MAX,data);
+    int i=1;
+   while(  (fgets(str,MAX,data)) != NULL)
+    { 
+        printf("%d-",i++);
+        c=strtok(str,",");
+         printf("%s\t",c); 
+        c=strtok(NULL,",");
+         printf("%s\t",c); 
+        c=strtok(NULL,",");
+         printf("%s\t",c); 
+        c=strtok(NULL,",");
+         printf("%s\t",c); 
+        c=strtok(NULL,",");
+         printf("%s\t",c); 
+        c=strtok(NULL,",");
+         printf("%s\n",c); 
+        
     }
     printf("END\n");
     fclose(data); //To close The File
@@ -152,6 +174,7 @@ void print(FILE* data , char* file_name)
 void search (FILE* data , char* file_name)
 {
     struct info student;
+    char *c;               // to 
     char str[MAX];        // to store line by line 
     printf("First Name                \t");
     scanf("%s",student.f_name);
@@ -160,10 +183,23 @@ void search (FILE* data , char* file_name)
         printf ("Loading... \n");
         //loop to print all line in file 
         while(  (fgets(str,MAX,data)) != NULL)
-    { 
-        if ( strncmp(student.f_name , str ,strlen(student.f_name)) == 0 )
-        printf ("%s",str);  //to print line where the pointer is existing
-    }
+        { 
+            if ( strncmp(student.f_name , str ,strlen(student.f_name)) == 0 )
+             {
+                c=strtok(str,",");
+                printf("%s\t",c); 
+                c=strtok(NULL,",");
+                printf("%s\t",c); 
+                c=strtok(NULL,",");
+                printf("%s\t",c); 
+                c=strtok(NULL,",");
+                printf("%s\t",c); 
+                c=strtok(NULL,",");
+                printf("%s\t",c); 
+                c=strtok(NULL,",");
+                printf("%s",c);
+            }
+        }
     }
     printf ("End of search \n");
     fclose(data); //To close The File
