@@ -29,8 +29,8 @@ struct info
     char english_grade[GRADE_SIZE];
     char math_grade[GRADE_SIZE];
 };
-  
-/*void menu()      // Function of Print the menu
+ 
+/*void menu()                                     // Function of Print the menu
 {
     char c;
     FILE* menu = fopen("Main Menu","a+");
@@ -43,37 +43,44 @@ struct info
     }
     printf("\n");
 }    */
-void add(FILE* data , char* file_name);       // Function of addition
-void print(FILE* data , char* file_name);    // Function of addition
-void search(FILE* data , char* file_name);  // Function to search in data file
-void edit(FILE* data , char* file_name);   // Function of edit
-void top(FILE* data , char* file_name);   // Function of print top 10 of score
-void del(FILE* data , char* file_name);  // Function of delete student
+void add(FILE* data    , char* file_name);       // Function of addition
+void print(FILE* data  , char* file_name);      // Function of addition
+void search(FILE* data , char* file_name);     // Function to search in data file
+void edit(FILE* data   , char* file_name);    // Function of edit
+void top(FILE* data    , char* file_name);   // Function of print top 10 of score
+void del(FILE* data    , char* file_name);  // Function of delete student
 
 int main(int argc ,char *argv[])
 {
-    FILE* data ;
-    char* file_name;  
-    struct info student ;
-    struct top_stu stu ;
-    //printf("have %d of argument\n",argc);
+    FILE* data ;            //Pointer of File
+    char* file_name;       // name of file
+    struct info student ; //structure variable
+    struct top_stu stu ; //structure variable
     //printf("Program name %s\n", argv[0]);
+    //to test the program
     #if LOG_DEBUEGG
-        file_name ="data2.csv";
+        file_name ="data2.csv"; //file under testing
     #else
-        file_name = argv[1];
-    #endif // give file name by user 
+        file_name = argv[1]; // give file name by user 
+    #endif 
+    //if user did not enter the file name 
+    if (file_name==NULL)
+        {
+            printf("You did not enter the file name to use it\n.(\"Please, start agin with (program name file name)\".) \n"); //
+            exit(1);
+        }
     //FILE * data=fopen(file_name ,"a+"); //open or creat file name input by user
     printf("                    Welcome\n"); // Introduction
-    char continu; // To loop the program by (yes/no)
-    char choice; // To Select the from menu
-    int i=0;
+    //char continu; // To loop the program by (yes/no)
+    char choice;   // To Select the from menu
+    int i=0;      // To loop the program
     while ( i == 0 )
     {
         printf("================================================================================================\n"); 
         printf("Press 'a' on keyboard for adding new name.\nPress 'p' to print all information in database file.\nPress 's' to search for a name.\nPress 'e' to edit the enteries of the student.\nPress 't' to print top 10 students.\nPress 'd' to delete a student.\nPress 'x' to exit program.\nPlease enter your option then press enter:\n");
         //menu();
         scanf(" %c",&choice);       // Input the selection form menu 
+        fflush(stdin);
         switch (choice) // Status of menu
         {
             case ('a'): // To add new name 
@@ -83,20 +90,20 @@ int main(int argc ,char *argv[])
                 print(data , file_name);    // Function of Print all data
                 break;
             case ('s'): // To search for a name
-                search(data , file_name);
+                search(data , file_name);  // Function To search for a name
                 break;
             case ('e'): // To edit data of the student
-                edit(data , file_name);
+                edit(data , file_name);   // Function To edit data of the student
                 break;
             case ('t'): // To print top 10 students
-                top(data , file_name);
-                break;
+                top(data , file_name);    // Function To print top 10 students
+                break; 
             case ('d'): // To delete a student
-                del(data , file_name);
+                del(data , file_name);   // Function To delete a student
                 break;
-            case ('x'): // To delete a student
-                printf("The end \n");
-                i++;
+            case ('x'): // To exit a student
+                printf("The end \n");    // message in the end 
+                i++; //to exit loop
                 break;
         }
         // To loop the program by (yes/no)
@@ -109,7 +116,7 @@ int main(int argc ,char *argv[])
 void add( FILE* data , char* file_name) // Function of addition
 {
     struct info student;
-    data = fopen(file_name,"a+");         // open file
+    data = fopen(file_name,"a+");               // open file
     printf("First Name                \t"); 
     scanf("%s",student.f_name);
     fprintf(data,"%s,",student.f_name);         // To add First Name in file 
@@ -128,33 +135,33 @@ void add( FILE* data , char* file_name) // Function of addition
     printf("Math grade (pass/fail)    \t");
     scanf("%s",student.math_grade); 
     fprintf(data,"%s\n",student.math_grade);    // To add Math grade in file 
-    fclose(data);                        //To close The File
+    fclose(data);                              //To close The File
  
 }
 
 void print(FILE* data , char* file_name)
 {
     struct info student;
-    data = fopen(file_name,"r"); // open file
+    data = fopen(file_name,"r"); //open file
     char *c;          // to store character by character
-    char str[MAX];  // to store line by line 
+    char str[MAX];   // to store line by line 
     //c =fscanf(data,"%s %s %d %s %s %s\n",student.f_name,student.l_name,&student.score,student.arabic_grade,student.english_grade,student.math_grade); //to read data from file
     //str[MAX]=fscanf(data,"%19[^,]\t%19[^,]\t%d\t%4[^,]\t%19[^,]\t%s\n",student.f_name,student.l_name,&student.score,student.arabic_grade,student.english_grade,student.math_grade); //to read data from file
-    // to move the file pointer to the beginning of the file stream
     //loop to print all character in file 
     /*while(c != EOF)
     { 
         printf ("%c",c); 
         c = fgetc(data); //to get all character from file
     }*/
-    printf("First name\tLast name\tscore Arabic English Math\n");
-    rewind(data);
+    printf("First name Last name score Arabic English Math\n");
+    rewind(data);     // to move the file pointer to the beginning of the file stream
     //fgets(str,MAX,data);
-    int i=1;
+    int i=1; // To loop the print
    while(  (fgets(str,MAX,data)) != NULL)
     { 
-        printf("%d-",i++);
-        c=strtok(str,",");
+        // To parsing csv file.
+        printf("%d-",i++); //To count names
+        c=strtok(str,",");  // to stop when he get ","
          printf("%s\t",c); 
         c=strtok(NULL,",");
          printf("%s\t",c); 
@@ -177,6 +184,7 @@ void search (FILE* data , char* file_name)
     char *c;               // to 
     char str[MAX];        // to store line by line 
     printf("First Name                \t");
+    fflush(stdin);
     scanf("%s",student.f_name);
     data = fopen(file_name,"r"); // open file
     {
@@ -206,19 +214,19 @@ void search (FILE* data , char* file_name)
 }
 void edit(FILE* data , char* file_name)
 {
-    struct info student;
-    int counter=0; // to clear student found or not founded
+    struct info student;  // To definition structure 
+    int counter=0;       // to clear student found or not founded
     FILE* temp=fopen("temporary.csv","w"); //Temporary file 
-    data = fopen(file_name,"r"); // open file
+    data = fopen(file_name,"r");   // open file
     char str[MAX];
+    //to input name want to edit
     printf("Edit data of Student Enter\n");
     printf("First Name                \t");
     scanf("%s",student.f_name);
     printf("Last Name                 \t");
     scanf("%s",student.l_name);
-    strcat(student.f_name ,"," ) ;
-    strcat(student.f_name ,student.l_name ) ;
-    // To copy without deleted info of student.f_name
+    strcat(student.f_name ,"," ) ; // to identical format
+    strcat(student.f_name ,student.l_name ) ;// To copy without deleted information of student
     //printf("Found: %s",student.f_name);
     //loop to copy data file in temporary file without Student Deleted
     while(  (fgets(str,MAX,data)) != NULL)
@@ -399,19 +407,19 @@ void top(FILE* data , char* file_name)
 }
 void del(FILE* data , char* file_name) 
 {
-    struct info student;
-    int counter=0; // to clear student found or not founded
+    struct info student; // To definition structure 
+    int counter=0;      // to clear student found or not founded
     FILE* temp=fopen("temporary.csv","w"); //Temporary file 
     data = fopen(file_name,"r"); // open file
     char str[MAX];
+    //to input name want to delete
     printf("Delete data of Student\n");
     printf("First Name                \t");
     scanf("%s",student.f_name);
     printf("Last Name                 \t");
     scanf("%s",student.l_name);
-    strcat(student.f_name ,"," ) ;
-    strcat(student.f_name ,student.l_name ) ;
-    // To copy without deleted info of student.f_name
+    strcat(student.f_name ,"," ) ; // to identical format
+    strcat(student.f_name ,student.l_name ) ; // To copy without deleted info of student.f_name
     //printf("Found: %s",student.f_name);
     //loop to copy data file in temporary file without Student Deleted
     while(  (fgets(str,MAX,data)) != NULL)
@@ -420,7 +428,7 @@ void del(FILE* data , char* file_name)
         if ( strncmp(student.f_name , str ,strlen(student.f_name)) == 0 ) //To compare data
         {
             strcpy(student.f_name , str );
-            printf("Found: %s",student.f_name);
+            printf("Found: %s\n",student.f_name);
             counter++;
         }
         else if(strncmp(student.f_name , str ,strlen(student.f_name)) != 0)
@@ -429,11 +437,11 @@ void del(FILE* data , char* file_name)
         }
        
     } 
-    // if statment to clear student found or not founded
+    // if statement to clear student found or not founded
     if(counter==0)
-    printf("Error: student not found");
+    printf("Error: student not found\n");
     else
-    printf("Student is deleted");
+    printf("Student is deleted\n");
     // close our files
     fclose(data);
     fclose(temp);
