@@ -5,22 +5,22 @@
 #define MAX 1024
 #define NAME_SIZE 20 
 #define GRADE_SIZE 4
-#define LOG_DEBUEGG 0
+#define LOG_DEBUEGG 1
 // define file parameters
 
 // struc to store content of file to sort 
-  typedef struct top_stu
-  {
+struct top_stu
+{
     char name1[NAME_SIZE];
     char name2[NAME_SIZE];
     int t_score;
     char arabic_g[GRADE_SIZE];
     char english_g[GRADE_SIZE];
     char math_g[NAME_SIZE];
-  }stu;
+};
   
-  struct info
-  {
+struct info
+{
     // creat a pointer to store file name
     char f_name[NAME_SIZE];
     char l_name[NAME_SIZE];
@@ -28,7 +28,7 @@
     char arabic_grade[GRADE_SIZE];
     char english_grade[GRADE_SIZE];
     char math_grade[GRADE_SIZE];
-  };
+};
   
 /*void menu()      // Function of Print the menu
 {
@@ -347,7 +347,8 @@ void edit(FILE* data , char* file_name)
 void top(FILE* data , char* file_name)
 {
 
-    stu stu[MAX],str;   // structure to store data in array
+    struct top_stu stu[1024],str;
+   // structure to store data in array
     int read = 0 ;     // number of data get from file in one line 
     int records = 0 ; // number of line get
     int i,j;         // counters 
