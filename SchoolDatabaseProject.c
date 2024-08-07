@@ -5,7 +5,7 @@
 #define MAX 1024
 #define NAME_SIZE 20 
 #define GRADE_SIZE 4
-#define LOG_DEBUEGG 1
+#define LOG_DEBUEGG 0
 // define file parameters
 
 // struc to store content of file to sort 
