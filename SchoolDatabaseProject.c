@@ -80,7 +80,8 @@ int main(int argc ,char *argv[])
         printf("Press 'a' on keyboard for adding new name.\nPress 'p' to print all information in database file.\nPress 's' to search for a name.\nPress 'e' to edit the enteries of the student.\nPress 't' to print top 10 students.\nPress 'd' to delete a student.\nPress 'x' to exit program.\nPlease enter your option then press enter:\n");
         //menu();
         scanf(" %c",&choice);       // Input the selection form menu 
-        fflush(stdin);
+        //fflush(stdin); // to flush input buffers(not working)
+        while ((getchar()) != '\n'){}//To flush input buffers
         switch (choice) // Status of menu
         {
             case ('a'): // To add new name 
