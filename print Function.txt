@@ -1,0 +1,39 @@
+void print(FILE* data , char* file_name)
+{
+    struct info student;
+    data = fopen(file_name,"r"); //open file
+    char *c;          // to store character by character
+    char str[MAX];   // to store line by line 
+    //c =fscanf(data,"%s %s %d %s %s %s\n",student.f_name,student.l_name,&student.score,student.arabic_grade,student.english_grade,student.math_grade); //to read data from file
+    //str[MAX]=fscanf(data,"%19[^,]\t%19[^,]\t%d\t%4[^,]\t%19[^,]\t%s\n",student.f_name,student.l_name,&student.score,student.arabic_grade,student.english_grade,student.math_grade); //to read data from file
+    //loop to print all character in file 
+    /*while(c != EOF)
+    { 
+        printf ("%c",c); 
+        c = fgetc(data); //to get all character from file
+    }
+    printf("First name Last name score Arabic English Math\n");
+    rewind(data);     // to move the file pointer to the beginning of the file stream
+    //fgets(str,MAX,data);
+    int i=1; // To loop the print
+   while(  (fgets(str,MAX,data)) != NULL)
+    { 
+        // To parsing csv file.
+        printf("%d-",i++); //To count names
+        c=strtok(str,",");  // to stop when he get ","
+         printf("%s\t",c); 
+        c=strtok(NULL,",");
+         printf("%s\t",c); 
+        c=strtok(NULL,",");
+         printf("%s\t",c); 
+        c=strtok(NULL,",");
+         printf("%s\t",c); 
+        c=strtok(NULL,",");
+         printf("%s\t",c); 
+        c=strtok(NULL,",");
+         printf("%s\n",c); 
+        
+    }
+    printf("END\n");
+    fclose(data); //To close The File
+}

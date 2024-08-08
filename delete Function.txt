@@ -1,0 +1,45 @@
+void del(FILE* data , char* file_name) 
+{
+    struct info student; // To definition structure 
+    int counter=0;      // to clear student found or not founded
+    FILE* temp=fopen("temporary.csv","w"); //Temporary file 
+    data = fopen(file_name,"r"); // open file
+    char str[MAX];
+    //to input name want to delete
+    printf("Delete data of Student\n");
+    printf("First Name                \t");
+    scanf("%s",student.f_name);
+    printf("Last Name                 \t");
+    scanf("%s",student.l_name);
+    strcat(student.f_name ,"," ) ; // to identical format
+    strcat(student.f_name ,student.l_name ) ; // To copy without deleted info of student.f_name
+    //printf("Found: %s",student.f_name);
+    //loop to copy data file in temporary file without Student Deleted
+    while(  (fgets(str,MAX,data)) != NULL)
+    {      
+        
+        if ( strncmp(student.f_name , str ,strlen(student.f_name)) == 0 ) //To compare data
+        {
+            strcpy(student.f_name , str );
+            printf("Found: %s\n",student.f_name);
+            counter++;
+        }
+        else if(strncmp(student.f_name , str ,strlen(student.f_name)) != 0)
+        {
+            fputs(str, temp);     
+        }
+       
+    } 
+    // if statement to clear student found or not founded
+    if(counter==0)
+    printf("Error: student not found\n");
+    else
+    printf("Student is deleted\n");
+    // close our files
+    fclose(data);
+    fclose(temp);
+  
+    // delete the original file, give the temporary file the name of the original file
+    remove(file_name);
+    rename( "temporary.csv" , file_name );
+}

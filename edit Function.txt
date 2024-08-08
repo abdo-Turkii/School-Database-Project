@@ -1,0 +1,60 @@
+void edit(FILE* data , char* file_name)
+{
+    struct info student;  // To definition structure 
+    int counter=0;       // to clear student found or not founded
+    FILE* temp=fopen("temporary.csv","w"); //Temporary file 
+    data = fopen(file_name,"r");   // open file
+    char str[MAX];
+    //to input name want to edit
+    printf("Edit data of Student Enter\n");
+    printf("First Name                \t");
+    scanf("%s",student.f_name);
+    printf("Last Name                 \t");
+    scanf("%s",student.l_name);
+    strcat(student.f_name ,"," ) ; // to identical format
+    strcat(student.f_name ,student.l_name ) ;// To copy without deleted information of student
+    //printf("Found: %s",student.f_name);
+    //loop to copy data file in temporary file without Student Deleted
+    while(  (fgets(str,MAX,data)) != NULL)
+    {      
+        
+        if ( strncmp(student.f_name , str ,strlen(student.f_name)) == 0 ) //To compare data
+        {
+            strcpy(student.f_name , str );
+            printf("Found: %s",student.f_name);
+            counter++;
+        }
+        else if(strncmp(student.f_name , str ,strlen(student.f_name)) != 0)
+        {
+            fputs(str, temp);     
+        }
+       
+    } 
+
+    //To input new data
+    printf("New First Name                \t");
+    scanf("%s",student.f_name);
+    fprintf(temp,"%s,",student.f_name);
+    printf("New Last Name                 \t");
+    scanf("%s",student.l_name);
+    fprintf(temp,"%s,",student.l_name);
+    printf("New Total score of 100        \t");
+    scanf("%d",&student.score);
+    fprintf(temp,"%d,",student.score);
+    printf("New Arabic grade (pass/fail)  \t");
+    scanf("%s",student.arabic_grade);
+    fprintf(temp,"%s,",student.arabic_grade);
+    printf("New English grade (pass/fail) \t");
+    scanf("%s",student.english_grade);
+    fprintf(temp,"%s,",student.english_grade);
+    printf("New Math grade (pass/fail)    \t");
+    scanf("%s",student.math_grade);
+    fprintf(temp,"%s\n",student.math_grade); //how to end of line and do not mix with next line
+    // close our files
+    fclose(data);
+    fclose(temp);
+  
+    // delete the original file, give the temporary file the name of the original file
+    remove(file_name);
+    rename( "temporary.csv" , file_name );
+}

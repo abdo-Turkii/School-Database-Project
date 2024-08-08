@@ -1,0 +1,34 @@
+void search (FILE* data , char* file_name)
+{
+    struct info student;
+    char *c;               // to 
+    char str[MAX];        // to store line by line 
+    printf("First Name                \t");
+    fflush(stdin);
+    scanf("%s",student.f_name);
+    data = fopen(file_name,"r"); // open file
+    {
+        printf ("Loading... \n");
+        //loop to print all line in file 
+        while(  (fgets(str,MAX,data)) != NULL)
+        { 
+            if ( strncmp(student.f_name , str ,strlen(student.f_name)) == 0 )
+             {
+                c=strtok(str,",");
+                printf("%s\t",c); 
+                c=strtok(NULL,",");
+                printf("%s\t",c); 
+                c=strtok(NULL,",");
+                printf("%s\t",c); 
+                c=strtok(NULL,",");
+                printf("%s\t",c); 
+                c=strtok(NULL,",");
+                printf("%s\t",c); 
+                c=strtok(NULL,",");
+                printf("%s",c);
+            }
+        }
+    }
+    printf ("End of search \n");
+    fclose(data); //To close The File
+}

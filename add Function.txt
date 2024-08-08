@@ -1,0 +1,25 @@
+void add( FILE* data , char* file_name) // Function of addition
+{
+    struct info student;
+    data = fopen(file_name,"a+");               // open file
+    printf("First Name                \t"); 
+    scanf("%s",student.f_name);
+    fprintf(data,"%s,",student.f_name);         // To add First Name in file 
+    printf("Last Name                 \t");
+    scanf("%s",student.l_name);
+    fprintf(data,"%s,",student.l_name);         // To add Last Name in file 
+    printf("Total score of 100        \t");
+    scanf("%d",&student.score);
+    fprintf(data,"%d,",student.score);          // To add total score in file 
+    printf("Arabic grade (pass/fail)  \t");
+    scanf("%s",student.arabic_grade); 
+    fprintf(data,"%s,",student.arabic_grade);   // To add Arabic grade in file
+    printf("English grade (pass/fail) \t");
+    scanf("%s",student.english_grade); 
+    fprintf(data,"%s,",student.english_grade);  // To add English grade in file
+    printf("Math grade (pass/fail)    \t");
+    scanf("%s",student.math_grade); 
+    fprintf(data,"%s\n",student.math_grade);    // To add Math grade in file 
+    fclose(data);                              //To close The File
+ 
+}
